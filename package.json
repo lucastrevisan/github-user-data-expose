@@ -1,12 +1,12 @@
 {
   "name": "github-user-data-expose",
   "version": "1.0.0",
-  "description": "A SPA for access and expose user data from Github API",
+  "description": "App for access and expose user data from Github API",
   "author": "lucastrevisan@gmail.com",
   "private": false,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-		"start": "node server.js",
+    "start": "node server.js",
     "build": "node build/build.js"
   },
   "dependencies": {

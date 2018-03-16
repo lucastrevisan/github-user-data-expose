@@ -18,8 +18,7 @@
 		</div>
 		<div class="app-repos">
 			<h3 class="app-repos__title">
-				{{userData.public_repos}}
-				Repositórios
+				<span>{{userData.public_repos}} Repositórios</span>
 				<div class="app-repos__filter">
 					<label>ordenar lista por:</label>
 					<select v-model="sortType" v-on:change="sort">
@@ -108,7 +107,7 @@ export default {
 }
 .app-user__back {
 	position: absolute;
-	right: 10px;
+	right: 0px;
 	top: 0px;
 	font-size: 3em;
 	padding: 5px 20px;
@@ -136,6 +135,9 @@ export default {
 	text-transform: uppercase;
 	align-items: center;
 	color: var(--mid-grey);
+}
+.app-repos__title span {
+	margin-right: 10px;
 }
 .app-repos__title:after {
 	content: "";
@@ -218,8 +220,31 @@ export default {
 }
 .app-user__compl-info b {
 	margin-left: 6px;
-	padding: 5px;
+	padding: 5px 10px;
 	color: var(--almost-white);
 	background: var(--app-green);
+}
+@media (max-width: 600px) {
+	.app-user {
+		padding: 10px 10px 0 0;
+	}
+	.app-user__info,
+	.app-repos__item {
+		margin: 0 0 10px 10px;
+	}
+	.app-user__info,
+	.app-repos__title {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.app-user__compl-info {
+		margin-top: 30px;
+	}
+	.app-user__compl-info span {
+		margin: 10px 0 10px 2em;
+	}
+	.app-repos__title span {
+		margin: 10px 0;
+	}
 }
 </style>

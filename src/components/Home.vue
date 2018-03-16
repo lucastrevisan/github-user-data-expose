@@ -34,8 +34,9 @@ export default {
 			let vm = this;
 			vm.loading = true;
 			vm.error = false;
-			axios.get("https://api.github.com/users/" + vm.user )
+			return axios.get("https://api.github.com/users/" + vm.user )
 	    .then( (response) => {
+				vm.loading = false;
 				router.push({ name: 'UserData', params: { user: vm.user, data: response.data }})
 	    })
 	    .catch( (error) => {
