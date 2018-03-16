@@ -1,6 +1,11 @@
-# github-api-consult
+# github-user-data-expose
 
 > App for access data from Github API
+
+[![Build Status](https://travis-ci.org/lucastrevisan/github-user-data-expose.svg?branch=master)](https://travis-ci.org/lucastrevisan/github-user-data-expose)
+
+Running Application:
+[https://github-user-data-expose.herokuapp.com/#/](https://github-user-data-expose.herokuapp.com/#/)
 
 ## Build Setup
 
