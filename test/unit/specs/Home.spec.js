@@ -3,14 +3,19 @@ import Home from '@/components/Home';
 import chai from 'chai';
 import sinon from 'sinon';
 import axios from 'axios';
-require('es6-promise').polyfill()
+import router from '@/router'
 
 describe('Home.vue', () => {
-	let Constructor; let vm; let router;
+	let Constructor; let vm; let routerSpy;
 
 	beforeEach(() => {
+		routerSpy = sinon.spy(router, 'push');
 		Constructor = Vue.extend(Home);
     vm = new Constructor().$mount();
+  });
+
+	afterEach(() => {
+		router.push.restore();
   });
 
   it('should set correct component name', () => {
@@ -27,10 +32,8 @@ describe('Home.vue', () => {
 
 	describe('Success Go to User', () => {
 		before(function () {
-			vm.user = 'mock_user';
-			const sandbox = sinon.sandbox.create()
-			const resolved = new Promise((resolve) => resolve({}));
-	    sandbox.stub(axios, 'get').returns(resolved);
+			const resolved = new Promise((resolve) => resolve({data: 'mock'}));
+	    sinon.stub(axios, 'get').returns(resolved);
 		});
 
 		after(function () {
@@ -40,6 +43,7 @@ describe('Home.vue', () => {
 		it('should trigger user data route', () => {
 			return vm.$options.methods.goToUser().then(() => {
 				chai.assert.isFalse(vm.loading);
+				chai.assert(routerSpy.calledOnce);
 			});
 		});
 	});
@@ -48,7 +52,7 @@ describe('Home.vue', () => {
 		before(function () {
 			const sandbox = sinon.sandbox.create()
 			const rejected = new Promise((resolve, reject) => reject({}));
-	    sandbox.stub(axios, 'get').returns(rejected);
+	    sinon.stub(axios, 'get').returns(rejected);
 		});
 
 		after(function () {
